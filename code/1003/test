@@ -1,0 +1,21 @@
+#!/bin/bash
+
+set -x
+
+ls *c *.h|xargs indent -linux
+
+ls *.c|xargs gcc -Wall -g -std=gnu99 -o mywget
+
+
+url_list=(
+    "http://static.mengkang.net/?a=upload/image/2019/0907/1567834464450406.png"
+    "https://static.mengkang.net?a=upload/image/2019/0907/1567834464450406.png"
+    "https:/static.mengkang.net?a=upload/image/2019/0907/1567834464450406.png"
+    "http://static.mengkang.net:8080/upload/image/2019/0907/1567834464450406.png?a=b#test"
+    "static.mengkang.net"
+)
+
+
+for url in ${url_list[@]};do
+    ./mywget ${url}
+done
